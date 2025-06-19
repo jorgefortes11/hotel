@@ -43,13 +43,13 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ message: 'Email já está registado' });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await User.create({
-      name,
-      email,
-      password: hashedPassword,
-      role,
-    });
+
+  const newUser = await User.create({
+    name,
+    email,
+    password,
+    role,
+});
 
     res.status(201).json({ message: 'Conta criada com sucesso', user: newUser });
   } catch (err) {
