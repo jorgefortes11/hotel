@@ -21,6 +21,23 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ message: 'Erro interno ao autenticar' });
   }
 });
+// 👉 Apagar utilizador por ID (admin)
+router.delete('/users/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleted = await User.destroy({ where: { id } });
+
+    if (deleted) {
+      return res.json({ message: 'Utilizador eliminado com sucesso' });
+    } else {
+      return res.status(404).json({ message: 'Utilizador não encontrado' });
+    }
+  } catch (err) {
+    console.error("Erro ao eliminar utilizador:", err);
+    res.status(500).json({ message: 'Erro ao eliminar utilizador' });
+  }
+});
+
 router.get('/users', async (req, res) => {
   try {
     const users = await User.findAll({

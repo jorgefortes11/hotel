@@ -26,6 +26,7 @@ const AdminCard = styled(Paper)(({ theme }) => ({
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
+
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
@@ -37,16 +38,19 @@ export default function AdminDashboard() {
       title: "Utilizadores",
       description: "Gerir contas de todos os utilizadores",
       icon: <UsersIcon color="primary" sx={{ fontSize: 50 }} />,
+      route: "/admin/users"
     },
     {
       title: "Quartos",
       description: "Visualizar, adicionar e editar quartos",
       icon: <RoomsIcon color="primary" sx={{ fontSize: 50 }} />,
+      route: "/admin/rooms"
     },
     {
       title: "Reservas",
       description: "Consultar e gerir reservas feitas",
       icon: <BookingsIcon color="primary" sx={{ fontSize: 50 }} />,
+      route: "/admin/bookings"
     }
   ];
 
@@ -80,7 +84,7 @@ export default function AdminDashboard() {
         >
           Painel do Administrador
         </Typography>
-        
+
         <Grid 
           container 
           spacing={4} 
@@ -94,9 +98,8 @@ export default function AdminDashboard() {
               sm={6} 
               md={4} 
               key={index}
-              sx={{
-                display: 'flex',
-              }}
+              sx={{ display: 'flex' }}
+              onClick={() => navigate(card.route)}
             >
               <AdminCard elevation={3}>
                 <Box 

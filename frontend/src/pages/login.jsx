@@ -16,8 +16,8 @@ export default function Login() {
       localStorage.setItem('role', response.data.role);
 
       if (response.data.role === 'admin') navigate('/admin');
-      else if (response.data.role === 'receptionist') navigate('/recepcionista');
-      else if (response.data.role === 'client' || response.data.role === 'guest') navigate('/cliente');
+      else if (response.data.role === 'receptionist') navigate('/receptionist');
+      else if (response.data.role === 'client' || response.data.role === 'guest') navigate('/client');
       else alert('Tipo de utilizador desconhecido.');
     } catch (err) {
       alert('Credenciais inválidas ou erro no servidor.');

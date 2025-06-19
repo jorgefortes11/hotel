@@ -26,6 +26,7 @@ const ClientCard = styled(Paper)(({ theme }) => ({
 
 export default function ClientDashboard() {
   const navigate = useNavigate();
+
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
@@ -37,16 +38,19 @@ export default function ClientDashboard() {
       title: "Minhas Reservas",
       description: "Ver histórico e detalhes das tuas reservas",
       icon: <ReservationsIcon color="primary" sx={{ fontSize: 50 }} />,
+      route: "/client/reservas"
     },
     {
       title: "Fazer Nova Reserva",
       description: "Escolhe o quarto ideal e reserva em poucos cliques",
       icon: <NewBookingIcon color="primary" sx={{ fontSize: 50 }} />,
+      route: "/client/nova"
     },
     {
       title: "Perfil",
       description: "Ver ou editar as tuas informações pessoais",
       icon: <ProfileIcon color="primary" sx={{ fontSize: 50 }} />,
+      route: "/client/perfil"
     }
   ];
 
@@ -98,7 +102,7 @@ export default function ClientDashboard() {
                 display: 'flex',
               }}
             >
-              <ClientCard elevation={3}>
+              <ClientCard elevation={3} onClick={() => navigate(card.route)}>
                 <Box 
                   sx={{ 
                     display: 'flex',
