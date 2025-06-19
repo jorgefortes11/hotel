@@ -29,13 +29,13 @@ Este projeto é um sistema completo de gestão de hotel, composto por um **backe
 
 ## Como executar o projeto
 
-### 🖥️ 1. Clonar o repositório
+### 1. Clonar o repositório
 ```bash
 git clone https://github.com/teu-usuario/hotel-management.git
 cd hotel-management
 ```
 
-### ⚙️ 2. Instalar e configurar o backend
+### 2. Instalar e configurar o backend
 ```bash
 cd backend
 npm install
@@ -60,7 +60,7 @@ npm start
 
 ---
 
-### 💻 3. Instalar e iniciar o frontend
+### 3. Instalar e iniciar o frontend
 ```bash
 cd ../frontend
 npm install
@@ -75,7 +75,7 @@ npm start
 
 | Utilizador | Email                | Palavra-passe | Tipo         |
 |------------|----------------------|----------------|--------------|
-| Admin      | maria@example.com     | 12345          | admin        |
+| Admin      | maria@example.com     | abc123         | admin        |
 | Recep.     | reception@example.com | 12345          | receptionist |
 | Cliente    | jorge@example.com     | 12345          | guest        |
 
