@@ -2,7 +2,8 @@ import { useState } from 'react';
 import axios from '../services/api';
 import { useNavigate } from 'react-router-dom';
 
-export default function Login() {
+export default function Register() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -10,25 +11,32 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/auth/login', { email, password });
-
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('role', response.data.role);
-
-      if (response.data.role === 'admin') navigate('/admin');
-      else if (response.data.role === 'receptionist') navigate('/recepcionista');
-      else if (response.data.role === 'client' || response.data.role === 'guest') navigate('/cliente');
-      else alert('Tipo de utilizador desconhecido.');
+      await axios.post('/auth/register', {
+        name,
+        email,
+        password,
+        role: 'client' // Apenas clientes podem registar-se
+      });
+      alert('Conta criada com sucesso!');
+      navigate('/login');
     } catch (err) {
-      alert('Credenciais inválidas ou erro no servidor.');
+      alert('Erro ao criar conta');
     }
   };
 
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h2 style={styles.title}>Gestão de Hotel - Login</h2>
+        <h2 style={styles.title}>Criar Conta</h2>
         <form onSubmit={handleSubmit} style={styles.form}>
+          <input
+            type="text"
+            placeholder="Nome"
+            value={name}
+            onChange={e => setName(e.target.value)}
+            required
+            style={styles.input}
+          />
           <input
             type="email"
             placeholder="Email"
@@ -45,12 +53,7 @@ export default function Login() {
             required
             style={styles.input}
           />
-          <button type="submit" style={styles.button}>Entrar</button>
-
-          <p style={{ marginTop: '1rem' }}>
-            Ainda não tens conta?{' '}
-            <a href="/register" style={{ color: '#3498db' }}>Criar conta</a>
-          </p>
+          <button type="submit" style={styles.button}>Criar Conta</button>
         </form>
       </div>
     </div>
@@ -90,7 +93,7 @@ const styles = {
     fontSize: '1rem',
   },
   button: {
-    backgroundColor: '#3498db',
+    backgroundColor: '#2ecc71',
     color: 'white',
     padding: '0.75rem',
     borderRadius: '8px',
