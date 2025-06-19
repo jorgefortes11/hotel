@@ -1,6 +1,7 @@
 import React from 'react';
-import { Box, Typography, Paper, Grid, Container } from '@mui/material';
+import { Box, Typography, Paper, Grid, Container, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 import {
   History as ReservationsIcon,
   AddCircleOutline as NewBookingIcon,
@@ -24,6 +25,13 @@ const ClientCard = styled(Paper)(({ theme }) => ({
 }));
 
 export default function ClientDashboard() {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    navigate('/login');
+  };
+
   const cards = [
     {
       title: "Minhas Reservas",
@@ -53,6 +61,12 @@ export default function ClientDashboard() {
       }}
     >
       <Container maxWidth="xl">
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+          <Button variant="contained" color="error" onClick={handleLogout}>
+            Sair
+          </Button>
+        </Box>
+
         <Typography 
           variant="h3" 
           component="h1" 
@@ -66,7 +80,7 @@ export default function ClientDashboard() {
         >
           Painel do Cliente
         </Typography>
-        
+
         <Grid 
           container 
           spacing={4} 
