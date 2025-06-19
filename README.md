@@ -1,8 +1,8 @@
-# Sistema de Gestão de Hotel 🏨
+# Sistema de Gestão de Hotel 
 
 Este projeto é um sistema completo de gestão de hotel, composto por um **backend em Node.js + Express + Sequelize + PostgreSQL** e um **frontend em React**, com dashboards separados para **administrador**, **rececionista** e **cliente/guest**.
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
 - Login com autenticação JWT
 - CRUD de utilizadores, quartos e reservas
@@ -10,7 +10,7 @@ Este projeto é um sistema completo de gestão de hotel, composto por um **backe
 - Proteção de rotas no frontend
 - Design moderno na interface de login
 
-## 🧰 Tecnologias utilizadas
+## Tecnologias utilizadas
 
 ### Backend:
 - Node.js
@@ -27,7 +27,7 @@ Este projeto é um sistema completo de gestão de hotel, composto por um **backe
 
 ---
 
-## 📦 Como executar o projeto
+## Como executar o projeto
 
 ### 🖥️ 1. Clonar o repositório
 ```bash
@@ -71,7 +71,7 @@ npm start
 
 ---
 
-### 🔐 Credenciais de teste
+### Credenciais de teste
 
 | Utilizador | Email                | Palavra-passe | Tipo         |
 |------------|----------------------|----------------|--------------|
@@ -81,7 +81,7 @@ npm start
 
 ---
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 hotel-management/
@@ -101,7 +101,7 @@ hotel-management/
 
 ---
 
-## 📌 Notas
+## Notas
 
 - Certificar que o PostgreSQL está a correr localmente e a base de dados está criada.
 - O sistema utiliza tokens JWT, armazenados no localStorage para proteger as rotas.
@@ -109,7 +109,7 @@ hotel-management/
 
 ---
 
-## 🧑‍💻 Autor
+## Autor
 
 Desenvolvido por:
 Jorge Fortes - 5543
