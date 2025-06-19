@@ -112,7 +112,7 @@ hotel-management/
 ## Autor
 
 Desenvolvido por:
-Jorge Fortes - 5543
-Yuri Correia - 5549
+- Jorge Fortes - 5543
+- Yuri Correia - 5549
 
 ---
