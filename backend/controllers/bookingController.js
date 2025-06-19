@@ -37,9 +37,6 @@ exports.createBooking = async (req, res) => {
 
     await booking.save();
 
-    // Atualizar disponibilidade do quarto (opcional)
-    // roomToBook.isAvailable = false;
-    // await roomToBook.save();
 
     res.json(booking);
   } catch (err) {
@@ -66,7 +63,7 @@ exports.cancelBooking = async (req, res) => {
       return res.status(404).json({ msg: 'Booking not found' });
     }
     
-    // Verificar se o usuário é o dono da reserva ou admin
+
     if (booking.user.toString() !== req.user.id && req.user.role !== 'admin') {
       return res.status(401).json({ msg: 'Not authorized' });
     }

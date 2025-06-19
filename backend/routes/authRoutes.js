@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const router = express.Router();
 const { User } = require('../models');
 
-// 👉 Rota de login
+
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -32,10 +32,10 @@ router.get('/users', async (req, res) => {
     res.status(500).json({ message: 'Erro ao obter utilizadores' });
   }
 });
-// 👉 Rota de registo (apenas role client)
+
 router.post('/register', async (req, res) => {
   const { name, email, password } = req.body;
-  const role = 'client'; // 👈 força o tipo de utilizador
+  const role = 'client'; 
 
   try {
     const existing = await User.findOne({ where: { email } });

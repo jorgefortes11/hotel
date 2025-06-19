@@ -1,56 +1,112 @@
+import React from 'react';
+import { Box, Typography, Paper, Grid, Container } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import {
+  History as ReservationsIcon,
+  AddCircleOutline as NewBookingIcon,
+  Person as ProfileIcon,
+} from '@mui/icons-material';
+
+const ClientCard = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(4),
+  borderRadius: theme.shape.borderRadius * 2,
+  transition: 'all 0.3s ease',
+  cursor: 'pointer',
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  '&:hover': {
+    transform: 'translateY(-5px)',
+    boxShadow: theme.shadows[8],
+  },
+  background: 'linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%)',
+}));
+
 export default function ClientDashboard() {
+  const cards = [
+    {
+      title: "Minhas Reservas",
+      description: "Ver histórico e detalhes das tuas reservas",
+      icon: <ReservationsIcon color="primary" sx={{ fontSize: 50 }} />,
+    },
+    {
+      title: "Fazer Nova Reserva",
+      description: "Escolhe o quarto ideal e reserva em poucos cliques",
+      icon: <NewBookingIcon color="primary" sx={{ fontSize: 50 }} />,
+    },
+    {
+      title: "Perfil",
+      description: "Ver ou editar as tuas informações pessoais",
+      icon: <ProfileIcon color="primary" sx={{ fontSize: 50 }} />,
+    }
+  ];
+
   return (
-    <div style={styles.container}>
-      <h1 style={styles.title}>Painel do Cliente</h1>
-      <div style={styles.cardContainer}>
-        <div style={styles.card}>
-          <h2 style={styles.cardTitle}>Minhas Reservas</h2>
-          <p style={styles.cardText}>Ver histórico e detalhes das tuas reservas</p>
-        </div>
-        <div style={styles.card}>
-          <h2 style={styles.cardTitle}>Fazer Nova Reserva</h2>
-          <p style={styles.cardText}>Escolhe o quarto ideal e reserva em poucos cliques</p>
-        </div>
-        <div style={styles.card}>
-          <h2 style={styles.cardTitle}>Perfil</h2>
-          <p style={styles.cardText}>Ver ou editar as tuas informações pessoais</p>
-        </div>
-      </div>
-    </div>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        minHeight: 'calc(100vh - 64px)',
+        py: 4,
+      }}
+    >
+      <Container maxWidth="xl">
+        <Typography 
+          variant="h3" 
+          component="h1" 
+          gutterBottom 
+          sx={{ 
+            fontWeight: 'bold',
+            color: 'primary.main',
+            mb: 6,
+            textAlign: 'center'
+          }}
+        >
+          Painel do Cliente
+        </Typography>
+        
+        <Grid 
+          container 
+          spacing={4} 
+          justifyContent="center"
+          alignItems="stretch"
+        >
+          {cards.map((card, index) => (
+            <Grid 
+              item 
+              xs={12} 
+              sm={6} 
+              md={4} 
+              key={index}
+              sx={{
+                display: 'flex',
+              }}
+            >
+              <ClientCard elevation={3}>
+                <Box 
+                  sx={{ 
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    textAlign: 'center',
+                    gap: 2
+                  }}
+                >
+                  {card.icon}
+                  <Typography variant="h5" component="h2" sx={{ fontWeight: 'bold' }}>
+                    {card.title}
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary">
+                    {card.description}
+                  </Typography>
+                </Box>
+              </ClientCard>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
   );
 }
-
-const styles = {
-  container: {
-    padding: '2rem',
-    background: 'linear-gradient(to right, #c9ffbf, #ffafbd)',
-    minHeight: '100vh',
-    color: '#2c3e50',
-  },
-  title: {
-    fontSize: '2rem',
-    marginBottom: '2rem',
-    fontWeight: 'bold',
-  },
-  cardContainer: {
-    display: 'flex',
-    gap: '1.5rem',
-    flexWrap: 'wrap',
-  },
-  card: {
-    backgroundColor: '#ffffff',
-    padding: '1.5rem',
-    borderRadius: '12px',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-    flex: '1 1 250px',
-  },
-  cardTitle: {
-    fontSize: '1.2rem',
-    fontWeight: '600',
-    marginBottom: '0.5rem',
-  },
-  cardText: {
-    fontSize: '1rem',
-    color: '#555',
-  },
-};

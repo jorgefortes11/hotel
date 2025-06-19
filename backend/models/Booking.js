@@ -28,7 +28,7 @@ const Booking = sequelize.define('Booking', {
   }
 });
 
-// Relacionamentos (devem ser definidos em um arquivo separado ou no final)
+
 Booking.associate = (models) => {
   Booking.belongsTo(models.User, { foreignKey: 'userId' });
   Booking.belongsTo(models.Room, { foreignKey: 'roomId' });

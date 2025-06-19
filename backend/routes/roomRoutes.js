@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { Room } = require('../models');
 
-// GET all rooms
 router.get('/', async (req, res) => {
   const rooms = await Room.findAll();
   res.json(rooms);

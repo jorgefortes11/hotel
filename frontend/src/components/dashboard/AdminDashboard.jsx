@@ -1,56 +1,126 @@
+import React from 'react';
+import { Box, Typography, Paper, Grid, Container, Button } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
+import {
+  PeopleAlt as UsersIcon,
+  Hotel as RoomsIcon,
+  CalendarToday as BookingsIcon,
+} from '@mui/icons-material';
+
+const AdminCard = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(4),
+  borderRadius: theme.shape.borderRadius * 2,
+  transition: 'all 0.3s ease',
+  cursor: 'pointer',
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  '&:hover': {
+    transform: 'translateY(-5px)',
+    boxShadow: theme.shadows[8],
+  },
+  background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+}));
+
 export default function AdminDashboard() {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    navigate('/login');
+  };
+
+  const cards = [
+    {
+      title: "Utilizadores",
+      description: "Gerir contas de todos os utilizadores",
+      icon: <UsersIcon color="primary" sx={{ fontSize: 50 }} />,
+    },
+    {
+      title: "Quartos",
+      description: "Visualizar, adicionar e editar quartos",
+      icon: <RoomsIcon color="primary" sx={{ fontSize: 50 }} />,
+    },
+    {
+      title: "Reservas",
+      description: "Consultar e gerir reservas feitas",
+      icon: <BookingsIcon color="primary" sx={{ fontSize: 50 }} />,
+    }
+  ];
+
   return (
-    <div style={styles.container}>
-      <h1 style={styles.title}>Painel do Administrador</h1>
-      <div style={styles.cardContainer}>
-        <div style={styles.card}>
-          <h2 style={styles.cardTitle}>Utilizadores</h2>
-          <p style={styles.cardText}>Gerir contas de todos os utilizadores</p>
-        </div>
-        <div style={styles.card}>
-          <h2 style={styles.cardTitle}>Quartos</h2>
-          <p style={styles.cardText}>Visualizar, adicionar e editar quartos</p>
-        </div>
-        <div style={styles.card}>
-          <h2 style={styles.cardTitle}>Reservas</h2>
-          <p style={styles.cardText}>Consultar e gerir reservas feitas</p>
-        </div>
-      </div>
-    </div>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        minHeight: 'calc(100vh - 64px)',
+        py: 4,
+      }}
+    >
+      <Container maxWidth="xl">
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+          <Button variant="contained" color="error" onClick={handleLogout}>
+            Sair
+          </Button>
+        </Box>
+
+        <Typography 
+          variant="h3" 
+          component="h1" 
+          gutterBottom 
+          sx={{ 
+            fontWeight: 'bold',
+            color: 'primary.main',
+            mb: 6,
+            textAlign: 'center'
+          }}
+        >
+          Painel do Administrador
+        </Typography>
+        
+        <Grid 
+          container 
+          spacing={4} 
+          justifyContent="center"
+          alignItems="stretch"
+        >
+          {cards.map((card, index) => (
+            <Grid 
+              item 
+              xs={12} 
+              sm={6} 
+              md={4} 
+              key={index}
+              sx={{
+                display: 'flex',
+              }}
+            >
+              <AdminCard elevation={3}>
+                <Box 
+                  sx={{ 
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    textAlign: 'center',
+                    gap: 2
+                  }}
+                >
+                  {card.icon}
+                  <Typography variant="h5" component="h2" sx={{ fontWeight: 'bold' }}>
+                    {card.title}
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary">
+                    {card.description}
+                  </Typography>
+                </Box>
+              </AdminCard>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
   );
 }
-
-const styles = {
-  container: {
-    padding: '2rem',
-    background: 'linear-gradient(to right, #74ebd5, #acb6e5)',
-    minHeight: '100vh',
-    color: '#2c3e50',
-  },
-  title: {
-    fontSize: '2rem',
-    marginBottom: '2rem',
-    fontWeight: 'bold',
-  },
-  cardContainer: {
-    display: 'flex',
-    gap: '1.5rem',
-    flexWrap: 'wrap',
-  },
-  card: {
-    backgroundColor: '#ffffff',
-    padding: '1.5rem',
-    borderRadius: '12px',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-    flex: '1 1 250px',
-  },
-  cardTitle: {
-    fontSize: '1.2rem',
-    fontWeight: '600',
-    marginBottom: '0.5rem',
-  },
-  cardText: {
-    fontSize: '1rem',
-    color: '#555',
-  },
-};
