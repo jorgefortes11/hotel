@@ -20,7 +20,7 @@ exports.createBooking = async (req, res) => {
       return res.status(400).json({ msg: 'Room is not available' });
     }
 
-    // Calcular preço total (simplificado)
+    // Calcular preço total
     const nights = Math.ceil((new Date(checkOutDate) - new Date(checkInDate)) / (1000 * 60 * 60 * 24));
     const totalPrice = nights * roomToBook.price;
 

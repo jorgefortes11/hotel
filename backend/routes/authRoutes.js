@@ -21,7 +21,7 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ message: 'Erro interno ao autenticar' });
   }
 });
-// 👉 Apagar utilizador por ID (admin)
+
 router.delete('/users/:id', async (req, res) => {
   try {
     const { id } = req.params;

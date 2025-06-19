@@ -109,7 +109,7 @@ exports.login = async (req, res) => {
   }
 };
 
-// Método opcional para obter informações do usuário logado
+
 exports.getMe = async (req, res) => {
   try {
     const user = await User.findByPk(req.user.userId, {
