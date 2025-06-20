@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Room } = require('../models');
 
-// ✅ Obter todos os quartos
+// Obter todos os quartos
 router.get('/', async (req, res) => {
   try {
     const rooms = await Room.findAll();
@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// ✅ Criar novo quarto
+// Criar novo quarto
 router.post('/', async (req, res) => {
   try {
     const room = await Room.create(req.body);
@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// ✅ Atualizar quarto por ID
+// Atualizar quarto por ID
 router.put('/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -43,7 +43,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// ✅ Apagar quarto por ID
+// Apagar quarto por ID
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
