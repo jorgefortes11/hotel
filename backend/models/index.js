@@ -3,7 +3,6 @@ const User = require('./User');
 const Room = require('./Room');
 const Booking = require('./Booking');
 
-// Defina as associações aqui
 User.hasMany(Booking);
 Booking.belongsTo(User);
 Room.hasMany(Booking);
